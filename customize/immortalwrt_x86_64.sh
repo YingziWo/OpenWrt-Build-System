@@ -24,6 +24,9 @@ rm -rf feeds/packages/net/mosdns
 #rm -rf feeds/luci/themes/luci-theme-argon
 #rm -rf feeds/small8/shadowsocks-rust
 
+#lucky
+git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
+
 #luci-theme-argone
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config

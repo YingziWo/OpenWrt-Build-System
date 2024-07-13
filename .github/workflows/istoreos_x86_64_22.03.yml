@@ -389,7 +389,7 @@ jobs:
           Autotimeset
           AdGuardHome
           Netdata
-          DDNS-go
+          Lucky
           ZeroTier
           应用中心(iStore)
           ```

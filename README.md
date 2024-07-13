@@ -49,6 +49,7 @@ Openvpn
 ssh root@xxx -p xxxx
 ```
 密码为SSH_PW定义的密码,不设置则为123
+登陆后使用su runner命令切换到runner用户进行编译
    
 ---
 #### 自定义选项(可选)
