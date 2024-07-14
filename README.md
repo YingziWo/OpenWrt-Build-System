@@ -13,7 +13,7 @@ Netdata
 Autotimeset
 AdGuardHome
 Mosdns
-DDNS-go
+Lucky
 ZeroTier
 Openvpn
 应用中心(iStore)
