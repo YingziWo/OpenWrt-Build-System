@@ -15,6 +15,8 @@ function git_sparse_clone() {
  cd .. && rm -rf $repodir
 }
 
+#lucky
+git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
 
 # 移除冲突包
 #rm -rf feeds/packages/net/mosdns
