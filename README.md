@@ -67,21 +67,21 @@ ssh root@xxx -p xxxx
 
 ---
 #### FRPC_CONFIG示例
-##### frp.freefrp.net是个公共服务器,所以可能会与他人配置冲突,默认会随机生成端口并尝试连接
+##### frp.freefrps.com是个公共服务器,所以可能会与他人配置冲突,默认会随机生成端口并尝试连接
 ```
 [common]
-server_addr = frp.freefrp.net  
-server_port = 7000
-token = freefrp.net
+server_addr = frp.freefrps.com
+server_port = 7100
+token = freefrps.com
 
-[ssh2action]     
+[ssh2action]
 type = tcp
 local_ip = 127.0.0.1
 local_port = 22
-remote_port = 22222   
+remote_port = 22222  
 ```
 ##### `备选公共服务器frp1.freefrp.net;frp2.freefrp.net;www.freefrps.com`
-##### 若使用公共服务器只需要修改frpc.ini.example中  [common]  部分的内容
+##### 若使用公共服务器只需要修改frpc.ini.example中  [common]  部分的内容,
    
 ---
 
