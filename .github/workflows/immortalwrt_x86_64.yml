@@ -369,7 +369,7 @@ jobs:
         name: ${{ env.DATE }}_${{ env.Uppercase_String }}_${{ env.BD_TARGET }}_${{ env.REPO_BRANCH }}
         allowUpdates: true
         tag: ${{ env.DATE }}_${{ env.BD_PROJECT }}_${{ env.BD_TARGET }}_${{ env.REPO_BRANCH }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.REPO_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
           ===Firmware ${{ env.Uppercase_String }} for ${{ env.BD_TARGET }}===
