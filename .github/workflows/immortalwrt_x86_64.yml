@@ -236,7 +236,7 @@ jobs:
       working-directory: ./${{ env.BD_PROJECT }}
       run: |
         echo -e "$(nproc) thread build."
-        make -j$(nproc) || make -j1 V=s | tee build.log
+        make -j$(nproc) || make -j1 V=0 | tee build.log
         echo "--------------------------硬盘信息--------------------------"
         echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT     
 
