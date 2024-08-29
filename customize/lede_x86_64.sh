@@ -38,7 +38,7 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-tas
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-xterm
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages taskd
 #更换插件名称
-sed -i 's/("iStore"),/("应用中心"),/g' package/linpc/luci-app-store/luasrc/controller/store.lua
+sed -i 's/("iStore"),/("软件仓库"),/g' package/linpc/luci-app-store/luasrc/controller/store.lua
 
 #adguardhome
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adguardhome
@@ -49,7 +49,7 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ope
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus
 #更换插件名称
-#sed -i 's/ShadowSocksR Plus+/科学上网/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
+#sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
 #ddns-go
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages ddns-go
