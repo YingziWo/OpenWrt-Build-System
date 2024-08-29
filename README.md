@@ -60,7 +60,7 @@ ssh root@xxx -p xxxx
 点击仓库的Settings  ==> Actions secrets and variables ==> Actions ==> New repository secret ==> 填写Secret 信息
 ```
 |Name |Secret值说明|缺省支持不设置|
-|----------|--------------------------------------------------|------|
+|----------|--------------------------------------------------|--------|
 |SSH_PW|   用于定义ssh访问的root密码,不设置默认123|可不设置|
 | FRPC_CONFIG|  用于定义frpc的配置文件,不设置将自动尝试使用公共frp服务器并生成SSH连接命令|可不设置|
 | IYUU_TOKEN| 爱语飞飞Token,用于通知编译结果,前往[官网](https://iyuu.cn/)申请|可不设置|
