@@ -32,7 +32,7 @@ Openvpn
    
 ---
 
-# 手动选择编译，过程暂停可SSH接入干预
+# 手动选择编译项目名称，编译过程会暂停，通过SSH接入进行干预
 
 ## [![Manually with SSH](https://github.com/lmxslpc/OpenWrt-Build-System/actions/workflows/Manually%20with%20SSH.yml/badge.svg?branch=master&event=workflow_dispatch)](https://github.com/lmxslpc/OpenWrt-Build-System/actions/workflows/Manually%20with%20SSH.yml)
 可用于修改编译内容，注意必须得frpc服务穿透成功，且要可用的情况下，SSH终端能连得上穿透出来的编译服务器，才支持在云编译服务器暂停编译的情况下修改编译内容。
