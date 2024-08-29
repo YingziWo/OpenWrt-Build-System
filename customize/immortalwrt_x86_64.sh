@@ -68,7 +68,7 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-mosdns
 # 修复插件冲突
-rm -rf feeds/small8/luci-app-mosdns/root/etc/init.d
+#rm -rf feeds/small8/luci-app-mosdns/root/etc/init.d
 
 #zerotier
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-zerotier
