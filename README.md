@@ -115,3 +115,9 @@ remote_port = 22222
 | CACHE_CLEAN  |    是否清除缓存(true/false)|
 | UPLOAD_ARTIFACT|   是否上传到ARTIFACT(true/false)|
 | UPLOAD_RELEASE|    是否上传到RELEASE(true/false)|
+
+---
+
+# 编译安装后样式
+
+
