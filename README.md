@@ -120,4 +120,5 @@ remote_port = 22222
 
 # 编译安装后样式
 
-
+Lede
+<img src="https://github.com/YingziWo/OpenWrt-Build-System/blob/master/ass/LedeOP%E7%B3%BB%E7%BB%9F.JPG" width="700">
