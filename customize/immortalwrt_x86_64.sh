@@ -18,14 +18,14 @@ function git_sparse_clone() {
 
 
 # 移除冲突包
-##rm -rf feeds/packages/net/mosdns
+rm -rf feeds/packages/net/mosdns
 #rm -rf feeds/packages/net/msd_lite
 #rm -rf feeds/packages/net/smartdns
 #rm -rf feeds/luci/themes/luci-theme-argon
 #rm -rf feeds/small8/shadowsocks-rust
 
 #lucky
-##git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
+git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
 
 #luci-theme-argone
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone
@@ -65,8 +65,8 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr
 #sed -i 's/admin\/system/admin\/services/g' feeds/luci/applications/luci-app-netdata/luasrc/view/netdata/*.htm
 
 #mosdns
-##git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns
-##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-mosdns
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-mosdns
 # 修复插件冲突
 #rm -rf feeds/small8/luci-app-mosdns/root/etc/init.d
 
@@ -88,7 +88,7 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-aut
 # git_sparse_clone master https://github.com/kiddin9/openwrt-packages ipt2socks
 # git_sparse_clone master https://github.com/kiddin9/openwrt-packages microsocks
 # git_sparse_clone master https://github.com/kiddin9/openwrt-packages naiveproxy
-# git_sparse_clone master https://github.com/kiddin9/openwrt-packages pdnsd-alt
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages pdnsd-alt
 # git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadowsocksr-libev
 # git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadowsocks-rust
 # git_sparse_clone master https://github.com/kiddin9/openwrt-packages simple-obfs
@@ -114,9 +114,9 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2dat
 ##########################################其他设置##########################################
 
 # 修改默认登录地址
-##sed -i 's/192.168.1.1/10.1.1.254/g' ./package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/10.1.1.254/g' ./package/base-files/files/bin/config_generate
 
-# 修改默认登录密码 ##root / root
+# 修改默认登录密码
 #sed -i 's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.::0:99999:7:::/g' ./package/base-files/files/etc/shadow
 
 
@@ -144,7 +144,6 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang\/golang\/golang-package.mk/$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHREPO/PKG_SOURCE_URL:=https:\/\/github.com/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
-
 
 
 
