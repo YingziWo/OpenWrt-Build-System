@@ -120,5 +120,15 @@ remote_port = 22222
 
 # 编译安装后样式
 
-Lede
+Lede OpenWrt
+---
 <img src="https://github.com/YingziWo/OpenWrt-Build-System/blob/master/ass/LedeOP%E7%B3%BB%E7%BB%9F.JPG" width="700">
+---
+<img src="https://github.com/YingziWo/OpenWrt-Build-System/blob/master/ass/LedeOP%E7%B3%BB%E7%BB%9F1.JPG" width="700">
+---
+iStoreOS
+---
+<img src="https://github.com/YingziWo/OpenWrt-Build-System/blob/master/ass/iStore%E7%B3%BB%E7%BB%9F.JPG" width="700">
+---
+<img src="https://github.com/YingziWo/OpenWrt-Build-System/blob/master/ass/iStore%E7%B3%BB%E7%BB%9F1.JPG" width="700">
+---
