@@ -40,7 +40,7 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ope
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus
 # 更换插件名称
-# sed -i 's/ShadowSocksR Plus+/科学上网/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
+# sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
 #ddns-go
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages ddns-go
@@ -97,7 +97,7 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxmindd
 sed -i 's/$1$5mjCdAB1$Uk1sNbwoqfHxUmzRIeuZK1//g' ./package/base-files/files/etc/shadow
 
 # 更换插件名称
-sed -i 's/("iStore"),/("应用中心"),/g' feeds/store/luci/luci-app-store/luasrc/controller/store.lua
+sed -i 's/("iStore"),/("软件仓库"),/g' feeds/store/luci/luci-app-store/luasrc/controller/store.lua
 
 # 修改内核版本
 # sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.15/g' ./target/linux/x86/Makefile
