@@ -139,3 +139,14 @@ iStoreOS
 ---
 <img src="https://github.com/YingziWo/OpenWrt-Build-System/blob/master/ass/iStore%E7%B3%BB%E7%BB%9F02.JPG" width="700">
 ---
+
+# 固件源码仓库：
+----
+
+https://github.com/coolsnowwolf/lede
+
+https://github.com/immortalwrt/immortalwrt
+
+https://github.com/istoreos/istoreos
+
+https://github.com/lmxslpc/OpenWrt-Build-System
