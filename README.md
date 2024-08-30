@@ -126,6 +126,12 @@ Lede OpenWrt
 ---
 <img src="https://github.com/YingziWo/OpenWrt-Build-System/blob/master/ass/LedeOP%E7%B3%BB%E7%BB%9F02_78.jpg" width="700">
 ---
+
+#
+Immortalwrt 23.05版本的云编译ISO安装后，在状态 - 防火墙 时提示信息
+---
+<img src="https://github.com/YingziWo/OpenWrt-Build-System/blob/master/ass/Immortwrt%E7%B3%BB%E7%BB%9F10.JPG" width="700">
+版本降级编译版本没有这个提示。
  
 iStoreOS
 ---
