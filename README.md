@@ -27,7 +27,7 @@ Openvpn
 |项目名称|编译目标|编译状态|说明|
 |-----------------|-------------------------|--------------------------------------|-----------------------------------------------------------------------|
 |LEDE|x86_64|[![LEDE_x86_64](https://github.com/YingziWo/OpenWrt-Build-System/actions/workflows/LEDE_x86_64.yml/badge.svg)](https://github.com/YingziWo/OpenWrt-Build-System/actions/workflows/LEDE_x86_64.yml)|内核版本编译出来的是6.6.46，内核比较新，流行插件支持新内核的少，需要注意。另外，ISO安装约占硬盘空间700M，Docker需要额外手动挂载添加的硬盘作为工作目录。|
-|ImmortalWrt|x86_64|[![immortalwrt_x86_64_23.05](https://github.com/YingziWo/OpenWrt-Build-System/actions/workflows/immortalwrt_x86_64.yml/badge.svg)](https://github.com/YingziWo/OpenWrt-Build-System/actions/workflows/immortalwrt_x86_64.yml)|23.05版本编译固件上机后，在 状态栏 ==》防火墙 项时显示提示信息。编译降级版本没有这个提示，注意版本选择。|
+|ImmortalWrt|x86_64|[![immortalwrt_x86_64_23.05](https://github.com/YingziWo/OpenWrt-Build-System/actions/workflows/immortalwrt_x86_64.yml/badge.svg)](https://github.com/YingziWo/OpenWrt-Build-System/actions/workflows/immortalwrt_x86_64.yml)|23.05版本编译固件上机后，在 状态栏 ==》防火墙 项时显示提示信息。编译降级版本没有这个提示，注意版本选择。Docker需要手动挂载硬盘使用。|
 |iStoreOS|x86_64|[![iStoreOS_x86_64_22.03](https://github.com/YingziWo/OpenWrt-Build-System/actions/workflows/istoreos_x86_64_22.03.yml/badge.svg)](https://github.com/YingziWo/OpenWrt-Build-System/actions/workflows/istoreos_x86_64_22.03.yml)|内核版本是5.10.221，内核支持大多数插件，ISO编译安装到机器上占约3GB硬盘空间，2GB自动分配给了Docker使用|
    
 ---
