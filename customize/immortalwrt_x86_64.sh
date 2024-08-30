@@ -18,14 +18,14 @@ function git_sparse_clone() {
 
 
 # 移除冲突包
-rm -rf feeds/packages/net/mosdns
+# rm -rf feeds/packages/net/mosdns
 #rm -rf feeds/packages/net/msd_lite
 #rm -rf feeds/packages/net/smartdns
 #rm -rf feeds/luci/themes/luci-theme-argon
 #rm -rf feeds/small8/shadowsocks-rust
 
 #lucky
-git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
+# git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
 
 #luci-theme-argone
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone
@@ -65,8 +65,8 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr
 #sed -i 's/admin\/system/admin\/services/g' feeds/luci/applications/luci-app-netdata/luasrc/view/netdata/*.htm
 
 #mosdns
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-mosdns
+# git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns
+# git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-mosdns
 # 修复插件冲突
 #rm -rf feeds/small8/luci-app-mosdns/root/etc/init.d
 
