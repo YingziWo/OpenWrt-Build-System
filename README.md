@@ -118,7 +118,7 @@ remote_port = 22222
 
 ---
 
-# 编译安装后样式
+# 云编译的ISO下载安装后的样式
 
 Lede OpenWrt
 ---
