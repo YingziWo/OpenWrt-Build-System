@@ -381,7 +381,7 @@ jobs:
           - 🌐 默认地址: 10.1.1.254
           - 🔑 默认密码: 空                
 
-          ### 📒 插件列表:
+          ### 📒 主要插件列表:
           ```
           DockerMan
           PassWall
@@ -391,7 +391,8 @@ jobs:
           Netdata
           Lucky
           ZeroTier
-          应用中心(iStore)
+          软件仓库(iStore)
+          ...
           ```
 
     - name: Organize files
