@@ -163,7 +163,7 @@ jobs:
         if [ -n "${{ secrets.FRPC_CONFIG }}" ]; then
           # 使用提供的frpc配置
           echo "${{ secrets.FRPC_CONFIG }}" > ./frpc.ini
-          chmod +x ./frpc && ./frpc -c ./frpc.ini > ./frpc.log 2>&1 &
+          # chmod +x ./frpc && ./frpc -c ./frpc.ini > ./frpc.log 2>&1 &
           sleep 5
           if grep -q "start proxy success" ./frpc.log; then
             echo "================frpc启动成功!================"
