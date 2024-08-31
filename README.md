@@ -133,7 +133,8 @@ Immortalwrt 23.05版本的云编译ISO安装后，在状态 - 防火墙 时提�
 <img src="https://github.com/YingziWo/OpenWrt-Build-System/blob/master/ass/Immortwrt%E7%B3%BB%E7%BB%9F10.JPG" width="700">
 ---
 版本降级到21.02版本云编译后，没有出现上面的提示。注意版本选择，本项目的版本已经切换到21.02上，编译的yml文件名没有更改，仍是23.05，编译结果会是21.02。
-<img src="ttps://github.com/YingziWo/OpenWrt-Build-System/blob/master/ass/Immortwrt系统11.JPG" width="700">
+---
+<img src="https://github.com/YingziWo/OpenWrt-Build-System/blob/master/ass/Immortwrt系统11.JPG" width="700">
 ---
 iStoreOS
 ---
