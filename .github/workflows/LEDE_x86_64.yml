@@ -10,7 +10,8 @@ on:
             type: choice
             options:
               - 关闭
-              - 开启
+              - 关闭
+              # 开启
 
           ssh_time1:
             description: "SSH调试设置:开始编译前暂停时间(分钟):"
