@@ -88,13 +88,19 @@ jobs:
 
     - name: Clone source code
       run: |
+        pwd
+        ll
         git clone --depth 1 ${{ env.REPO_URL }} -b ${{ env.REPO_BRANCH }} ${{ env.BD_PROJECT }}
-
+        ll
+      
     - name: Free up disk space
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
+        ls
         sudo mkdir -p -m 777 /mnt/${{ env.BD_PROJECT }}/dl /mnt/${{ env.BD_PROJECT }}/bin /mnt/${{ env.BD_PROJECT }}/staging_dir /mnt/${{ env.BD_PROJECT }}/build_dir
+        pwd
+        ls
         ln -sf /mnt/${{ env.BD_PROJECT }}/dl ${{ env.BD_PROJECT }}/dl
         ln -sf /mnt/${{ env.BD_PROJECT }}/bin ${{ env.BD_PROJECT }}/bin
         ln -sf /mnt/${{ env.BD_PROJECT }}/staging_dir ${{ env.BD_PROJECT }}/staging_dir
@@ -149,14 +155,14 @@ jobs:
         cat .config
 
               
-    - name: Download package
-      working-directory: ./${{ env.BD_PROJECT }}
-      run: |
-        make download -j$(nproc)
-        find dl -size -1024c -exec ls -l {} \;
-        find dl -size -1024c -exec rm -f {} \;
-        echo "--------------------------硬盘信息--------------------------"
-        echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT
+   # - name: Download package
+   #   working-directory: ./${{ env.BD_PROJECT }}
+   #   run: |
+   #    make download -j$(nproc)
+   #    find dl -size -1024c -exec ls -l {} \;
+   #    find dl -size -1024c -exec rm -f {} \;
+   #     echo "--------------------------硬盘信息--------------------------"
+   #     echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT
 
    # - name: Build firmware
    #   working-directory: ./${{ env.BD_PROJECT }}
