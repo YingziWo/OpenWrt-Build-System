@@ -89,7 +89,7 @@ jobs:
         gcc --version
         g++ --version
 
-- name: Clone source code
+    - name: Clone source code
       run: |
         git clone --depth 1 ${{ env.REPO_URL }} -b ${{ env.REPO_BRANCH }} ${{ env.BD_PROJECT }}
       
