@@ -134,11 +134,19 @@ jobs:
       env:
         CONFIG_FILE: './config/${{ env.BD_PROJECT }}_${{ env.BD_TARGET }}.config'
       run: |
+        pwd
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ${{ env.BD_PROJECT }}/.config
+        pwd
         cd ${{ env.BD_PROJECT }}
+        pwd
+        cat .config
         sudo echo "cd $PWD" >> /home/runner/.bashrc
+        pwd
         [ "${{ env.CACHE_CCACHE }}" == 'true' ] && echo -e 'CONFIG_CCACHE=y' >> .config
+        pwd
         make defconfig
+        pwd
+        cat .config
 
               
     - name: Download package
