@@ -1,0 +1,187 @@
+name: immortalwrt_x86_64_23.05
+
+on: 
+  workflow_dispatch:
+    inputs:
+          ssh_debug:
+            description: "是否开启SSH调试功能:"
+            required: false
+            default: "关闭"
+            type: choice
+            options:
+              - 关闭
+              - 关闭
+              # 开启
+
+          ssh_time1:
+            description: "SSH调试设置:开始编译前暂停时间(分钟):"
+            required: false
+            default: "30"
+            type: string
+
+          ssh_time2:
+            description: "SSH调试设置:编译报错后暂停时间(分钟):"
+            required: false
+            default: "340"
+            type: string
+
+  schedule:
+    - cron: 0 12 1,15 * *
+
+env:
+  BD_PROJECT: 'immortalwrt'        #项目名称
+  BD_TARGET: 'x86_64'        #编译目标
+  REPO_URL: 'https://github.com/immortalwrt/immortalwrt'   #项目地址
+  REPO_BRANCH: 'openwrt-21.02'   #项目分支
+  TARGET_PLATFORM: 'amd64'  #平台架构(amd64/arm64)
+  SSH_DEBUG: 'false' #是否开启SSH功能(true/false)
+  SSH_TIME: '30'   #单位分钟,设置暂停工作流时间,可用pkill sleep命令提前继续工作流,整个工作流运行时间不能超过6小时
+  SSH_TIME2: '340'   #单位分钟,设置暂停工作流时间,可用pkill sleep命令提前继续工作流,整个工作流运行时间不能超过6小时
+  CACHE_CCACHE: 'false'    #是否开启ccache功能(true/false)
+  CACHE_CLEAN: 'false'     #是否清除缓存(true/false)
+  UPLOAD_ARTIFACT: 'false'   #是否上传到ARTIFACT(true/false)
+  UPLOAD_RELEASE: 'true'    #是否上传到RELEASE(true/false)
+
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Check Server Performance
+      run: |
+        echo "警告⚠"
+        echo "分配的服务器性能有限，若选择的插件过多，务必注意CPU性能！"
+        echo -e "已知CPU型号(降序): 7763，8370C，8272CL，8171M，E5-2673\n"
+        echo "--------------------------CPU信息--------------------------"
+        echo "CPU物理数量: $(cat /proc/cpuinfo | grep "physical id" | sort | uniq | wc -l)"
+        echo "CPU核心数量: $(nproc)"
+        echo -e "CPU型号信息:$(cat /proc/cpuinfo | grep -m1 name | awk -F: '{print $2}')\n"
+        echo "--------------------------内存信息--------------------------"
+        echo "已安装内存详细信息:"
+        echo -e "$(sudo lshw -short -C memory | grep GiB)\n"
+        echo "--------------------------硬盘信息--------------------------"
+        echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT
+
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        docker rmi `docker images -q`
+        sudo -E rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
+        sudo -E apt-mark hold grub-efi-amd64-signed
+        sudo -E apt update
+        sudo -E apt -y purge azure-cli* docker* ghc* zulu* llvm* firefox google* dotnet* powershell* openjdk* mysql* php* mongodb* dotnet* snap*
+        sudo -E apt -y full-upgrade
+        sudo -E apt-get -qq install btop build-essential clang flex g++ gawk gcc-multilib gettext git libncurses5-dev libssl-dev python3-distutils python3-pyelftools python3-setuptools libpython3-dev rsync unzip zlib1g-dev swig aria2 jq subversion qemu-utils ccache rename libelf-dev device-tree-compiler libgnutls28-dev coccinelle libgmp3-dev libmpc-dev libfuse-dev ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache cmake cpio curl device-tree-compiler ecj fastjar flex gawk gettext gcc-multilib g++-multilib git gnutls-dev gperf haveged help2man intltool lib32gcc-s1 libc6-dev-i386 libc6-dev libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5 libncursesw5-dev libreadline-dev libssl-dev libtool lld llvm lrzsz mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python2.7 python3 python3-pip python3-ply python3-pyelftools qemu-utils re2c rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev
+        sudo -E systemctl daemon-reload
+        sudo -E apt -y autoremove --purge
+        sudo -E apt clean
+        sudo -E timedatectl set-timezone "Asia/Shanghai"
+        pwd
+        ls -a
+
+    - name: Clone source code
+      run: |
+        git clone --depth 1 ${{ env.REPO_URL }} -b ${{ env.REPO_BRANCH }} ${{ env.BD_PROJECT }}
+
+    - name: Free up disk space
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo mkdir -p -m 777 /mnt/${{ env.BD_PROJECT }}/dl /mnt/${{ env.BD_PROJECT }}/bin /mnt/${{ env.BD_PROJECT }}/staging_dir /mnt/${{ env.BD_PROJECT }}/build_dir
+        ln -sf /mnt/${{ env.BD_PROJECT }}/dl ${{ env.BD_PROJECT }}/dl
+        ln -sf /mnt/${{ env.BD_PROJECT }}/bin ${{ env.BD_PROJECT }}/bin
+        ln -sf /mnt/${{ env.BD_PROJECT }}/staging_dir ${{ env.BD_PROJECT }}/staging_dir
+        ln -sf /mnt/${{ env.BD_PROJECT }}/build_dir ${{ env.BD_PROJECT }}/build_dir
+        pwd
+        ls -a
+        
+        echo "--------------------------硬盘信息--------------------------"
+        echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT
+
+    - name: Cache
+      uses: HiGarfield/cachewrtbuild@main
+      with:
+        ccache: ${{ env.CACHE_CCACHE }}
+        mixkey: ${{ env.BD_PROJECT }}_${{ env.BD_TARGET }}_${{ env.REPO_BRANCH }}
+        clean: ${{ env.CACHE_CLEAN }}
+        prefix: ${{ github.workspace }}/${{ env.BD_PROJECT }}
+        
+    - name: Update & Install feeds
+      working-directory: ./${{ env.BD_PROJECT }}
+      run: |
+        pwd
+        ls
+        mv $GITHUB_WORKSPACE/feeds/${{ env.BD_PROJECT }}_${{ env.BD_TARGET }} $GITHUB_WORKSPACE/${{ env.BD_PROJECT }}/feeds.conf
+        pwd
+        ls
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        chmod +x $GITHUB_WORKSPACE/customize/*.sh
+        $GITHUB_WORKSPACE/customize/${{ env.BD_PROJECT }}_${{ env.BD_TARGET }}.sh
+        $GITHUB_WORKSPACE/customize/preset-adguard-core.sh ${{ env.TARGET_PLATFORM }}
+        $GITHUB_WORKSPACE/customize/preset-clash-core.sh ${{ env.TARGET_PLATFORM }}
+        pwd
+        ls
+        
+    - name: "Configuration Customization - Build_${{ env.BD_PROJECT }}_${{ env.BD_TARGET }}"
+      env:
+        CONFIG_FILE: './config/${{ env.BD_PROJECT }}_${{ env.BD_TARGET }}.config'
+      run: |
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ${{ env.BD_PROJECT }}/.config
+        cd ${{ env.BD_PROJECT }}
+        sudo echo "cd $PWD" >> /home/runner/.bashrc
+        [ "${{ env.CACHE_CCACHE }}" == 'true' ] && echo -e 'CONFIG_CCACHE=y' >> .config
+        make defconfig
+
+              
+    - name: Download package
+      working-directory: ./${{ env.BD_PROJECT }}
+      run: |
+        make download -j$(nproc)
+        find dl -size -1024c -exec ls -l {} \;
+        find dl -size -1024c -exec rm -f {} \;
+        echo "--------------------------硬盘信息--------------------------"
+        echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT
+
+   # - name: Build firmware
+   #   working-directory: ./${{ env.BD_PROJECT }}
+   #   run: |
+   #     echo -e "$(nproc) thread build."
+   #     make -j$(nproc) || make -j1 V=0 | tee build.log
+   #     echo "--------------------------硬盘信息--------------------------"
+   #     echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT     
+     
+
+    - name: Organize files
+      if: env.BD_COMPILE == 'success' && env.UPLOAD_ARTIFACT == 'true'
+      working-directory: ${{ env.FIRMWARE_PATH }}
+      run: |
+        echo "=============生成文件列表============="
+        ls -lh | awk '{print $9, $5}'
+        echo "==============清理文件中============="
+        rm -rf *kernel.bin *rootfs* *.json *.tar.zst
+        sleep 2
+        echo "=============上传文件列表============="
+        ls -lh | awk '{print $9, $5}'
+        echo "===================================="
+
+    - name : Upload artifact
+      uses: actions/upload-artifact@main
+      if: env.BD_COMPILE == 'success' && env.UPLOAD_ARTIFACT == 'true'
+      with:
+        name: ${{ env.BD_PROJECT }}-firmware-${{ env.BD_TARGET }}-${{ env.DATE }}
+        path: ${{ env.FIRMWARE_PATH }} 
+        retention-days: 2
+
+    - name: Check Disk
+      continue-on-error: true
+      run: |
+        echo "--------------------------硬盘信息--------------------------"
+        echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT
