@@ -106,7 +106,7 @@ jobs:
         echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT
 
     - name: Cache
-      uses: HiGarfield/cachewrtbuild@main
+      uses: YingziWo/cachewrtbuild@main
       with:
         ccache: ${{ env.CACHE_CCACHE }}
         mixkey: ${{ env.BD_PROJECT }}_${{ env.BD_TARGET }}_${{ env.REPO_BRANCH }}
