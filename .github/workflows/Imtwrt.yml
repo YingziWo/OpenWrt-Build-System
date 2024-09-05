@@ -1,4 +1,4 @@
-name: immortalwrt_x86_64_23.05
+name: Imtwrt-debug-step.yml
 
 on: 
   workflow_dispatch:
