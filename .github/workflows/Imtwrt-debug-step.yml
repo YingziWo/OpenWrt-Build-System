@@ -85,6 +85,9 @@ jobs:
         sudo -E timedatectl set-timezone "Asia/Shanghai"
         pwd
         ls -a
+        lsb_release -a
+        gcc --version
+        g++ --version
 
     - name: Clone source code
       run: |
