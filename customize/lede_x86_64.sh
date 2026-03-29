@@ -31,8 +31,8 @@ rm -rf feeds/luci/applications/luci-app-netdata
 #luci-theme-argone
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone   #作者改目录small-package--》small 26.3.29
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
-git_sparse_clone main https://github.com/kenzok8/small luci-theme-argone
-git_sparse_clone main https://github.com/kenzok8/small luci-app-argone-config
+#git_sparse_clone main https://github.com/kenzok8/small luci-theme-argone    #项目似乎无了 26.3.29
+#git_sparse_clone main https://github.com/kenzok8/small luci-app-argone-config  #项目似乎无了
 
 #luci-app-store
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
