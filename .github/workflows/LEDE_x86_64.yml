@@ -1,4 +1,4 @@
-name: LEDE_x86_64
+name: LEDE_x86_64   #Lede项目编译由于引用的源头变化较大，移步到Acitons-OpenWrt-build项目。26.3.29
 
 on: 
   workflow_dispatch:
